@@ -56,9 +56,9 @@ class User(db_instance.Model):
                 user.save()
 
 
-    # def get_user_role(self):
-    #     from models.roles import Role
-    #     role = Role.query.filter_by(id=self.role_id).first()
-    #     return role.name if role else None
+    def get_user_role(self):
+        from models.roles import Role
+        role = Role.query.filter_by(id=self.role_id).first()
+        return role.description if role else None
     
 configure_mappers()
