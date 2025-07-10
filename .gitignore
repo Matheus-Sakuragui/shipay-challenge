@@ -1,12 +1,10 @@
-# Byte-compiled / optimized / DLL files
+
 __pycache__/
 *.py[codz]
 *$py.class
 
-# C extensions
 *.so
 
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -32,11 +30,10 @@ MANIFEST
 *.manifest
 *.spec
 
-# Installer logs
+
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
 htmlcov/
 .tox/
 .nox/
@@ -51,15 +48,8 @@ coverage.xml
 .pytest_cache/
 cover/
 
-# Translations
 *.mo
 *.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
 
 # Flask stuff:
 instance/
