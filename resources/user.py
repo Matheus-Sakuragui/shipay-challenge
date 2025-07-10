@@ -2,10 +2,10 @@ from flask import make_response
 from flask_apispec import doc, marshal_with, use_kwargs
 from flask_apispec.views import MethodResource
 from flask_restful import Resource
-from marshmallow import fields
 
 from models.users import User
 from schemas.user import (UserRequestGetSchema, UserRequestPostSchema,
+                          AddRoleToUserSchema,
                                  UserResponseSchema, user_schema)
 
 
@@ -42,3 +42,26 @@ class UserRegisterResource(MethodResource, Resource):
             "created_at": user.created_at,
             "updated_at": user.updated_at
         }), 200)
+    
+@doc(description='Gerenciar papel do usuario', tags=['User'])
+class AddRoleToUserResource(MethodResource, Resource):
+    @marshal_with(UserResponseSchema, code='200')
+    @use_kwargs(AddRoleToUserSchema, location='json')
+    @doc(description='Atualizar papel de um usuário')
+    def put(self, **kwargs):
+        user_id = kwargs['user_id']
+        role_id = kwargs['role_id']
+        user = User.get_by_id(user_id)
+        if not user:
+            return make_response({"message": "User not found"}, 404)
+        user.role_id = role_id
+        user.save()
+        return make_response(user_schema.dump({
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "role": user.get_user_role(),
+            "created_at": user.created_at,
+            "updated_at": user.updated_at
+        }), 200)
+

@@ -22,6 +22,11 @@ class UserRequestPostSchema(Schema):
 class UserRequestGetSchema(Schema):
     id = fields.Int(required=False, default='id', help='Invalid id')
 
+class AddRoleToUserSchema(Schema):
+    user_id = fields.Int(required=True, default='user_id', help='Invalid user id')
+    role_id = fields.Int(required=True, default='role_id', help='Invalid role id')
+
+
 
 user_schema = UserResponseSchema()
 user_post_schema = UserRequestPostSchema()
